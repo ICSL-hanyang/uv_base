@@ -764,8 +764,8 @@ void SwarmVehicle::formationGenerator()
 }
 
 
-bool SwarmVehicle::multiSetpointLocal(swarm_ctrl_pkg::srvMultiSetpointLocal::Request &req,
-									  swarm_ctrl_pkg::srvMultiSetpointLocal::Response &res)
+bool SwarmVehicle::multiSetpointLocal(drone_base::srvMultiSetpointLocal::Request &req,
+									  drone_base::srvMultiSetpointLocal::Response &res)
 {
 	updateOffset();
 
@@ -780,15 +780,15 @@ bool SwarmVehicle::multiSetpointLocal(swarm_ctrl_pkg::srvMultiSetpointLocal::Req
 	return res.success;
 }
 
-bool SwarmVehicle::multiSetpointGlobal(swarm_ctrl_pkg::srvMultiSetpointGlobal::Request &req,
-									   swarm_ctrl_pkg::srvMultiSetpointGlobal::Response &res)
+bool SwarmVehicle::multiSetpointGlobal(drone_base::srvMultiSetpointGlobal::Request &req,
+									   drone_base::srvMultiSetpointGlobal::Response &res)
 {
 	res.success = true;
 	return res.success;
 }
 
-bool SwarmVehicle::gotoVehicle(swarm_ctrl_pkg::srvGoToVehicle::Request &req,
-							   swarm_ctrl_pkg::srvGoToVehicle::Response &res)
+bool SwarmVehicle::gotoVehicle(drone_base::srvGoToVehicle::Request &req,
+							   drone_base::srvGoToVehicle::Response &res)
 {
 	geometry_msgs::PoseStamped msg;
 	iter_ = camila_.begin() + req.num_drone - 1;

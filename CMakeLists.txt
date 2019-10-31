@@ -32,12 +32,12 @@ generate_messages(
    std_msgs
 )
 
-catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES swarm_ctrl_pkg
-  CATKIN_DEPENDS geometry_msgs mavros mavros_extras roscpp std_msgs
- ## DEPENDS system_lib
-)
+#catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES swarm_ctrl_pkg
+#  CATKIN_DEPENDS geometry_msgs mavros mavros_extras roscpp std_msgs
+# ## DEPENDS system_lib
+#)
 
 catkin_package(
   INCLUDE_DIRS include

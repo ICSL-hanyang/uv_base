@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/kdh/catkin_ws/devel/include/**",
+                "/home/kdh/catkin_ws/install_isolated/include/**",
+                "/opt/ros/kinetic/include/**",
+                "/home/kdh/catkin_ws/src/ceres-solver/include/**",
+                "/home/kdh/catkin_ws/src/drone_base/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

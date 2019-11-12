@@ -50,7 +50,7 @@ global_position:
   gps_uere: 1.0             # User Equivalent Range Error (UERE) of GPS sensor (m)
   use_relative_alt: true    # use relative altitude for local coordinates
   tf:
-    send: false               # send TF?
+    send: true               # send TF?
     frame_id: "map"  # TF frame_id
     global_frame_id: "earth"  # TF earth frame_id
     child_frame_id: "base_link" # TF child_frame_id
@@ -150,7 +150,7 @@ distance_sensor:
     frame_id: "sf10a_laser"
     orientation: PITCH_270
     field_of_view: 0.0  # XXX TODO
-    send_tf: false
+    send_tf: true
       #   sensor_position: {x:  0.0, y:  0.0, z:  -0.1}
     sensor_position: {x:  0.0, y:  -0.05, z:  -0.025}
 #   sonar_1_sub:
@@ -185,7 +185,7 @@ fake_gps:
   fix_type: 3             # type of GPS fix (default: 3D)
   tf:
     listen: false
-    send: false           # send TF?
+    send: true           # send TF?
     frame_id: "map"       # TF frame_id
     child_frame_id: "fix" # TF child_frame_id
     rate_limit: 10.0      # TF rate
@@ -199,19 +199,22 @@ mocap:
 
 # odom
 odometry:
-  in:
-    frame_id: "odom"
-    child_frame_id: "base_link"
-    frame_tf:
-      local_frame: "local_origin_ned"
-      body_frame_orientation: "flu"
-  out:
-    frame_tf:
-      # available: check MAV_FRAME odometry local frames in
-      # https://mavlink.io/en/messages/common.html
-      local_frame: "vision_ned"
-      # available: ned, frd or flu (though only the tf to frd is supported)
-      body_frame_orientation: "frd"
+  fcu:
+    odom_parent_id_des: "map"    # desired parent frame rotation of the FCU's odometry
+    odom_child_id_des: "base_link"    # desired child frame rotation of the FCU's odometry
+  # in:
+  #   frame_id: "odom"
+  #   child_frame_id: "base_link"
+  #   frame_tf:
+  #     local_frame: "local_origin_ned"
+  #     body_frame_orientation: "flu"
+  # out:
+  #   frame_tf:
+  #     # available: check MAV_FRAME odometry local frames in
+  #     # https://mavlink.io/en/messages/common.html
+  #     local_frame: "vision_ned"
+  #     # available: ned, frd or flu (though only the tf to frd is supported)
+  #     body_frame_orientation: "frd"
 
 # px4flow
 px4flow:
@@ -225,7 +228,7 @@ px4flow:
 vision_pose:
   tf:
     listen: false           # enable tf listener (disable topic subscribers)
-    frame_id: "map"
+    frame_id: "odom"
     child_frame_id: "vision_estimate"
     rate_limit: 10.0
 
@@ -246,12 +249,12 @@ wheel_odometry:
   wheel1: {x: 0.0, y:  0.15, radius: 0.05} # x-, y-offset (m,NED) and radius (m)
   send_raw: true              # send wheel's RPM and cumulative distance (~/wheel_odometry/rpm, ~/wheel_odometry/distance)
   send_twist: false           # send geometry_msgs/TwistWithCovarianceStamped instead of nav_msgs/Odometry
-  frame_id: "map"             # origin frame
+  frame_id: "odom"             # origin frame
   child_frame_id: "base_link" # body-fixed frame
   vel_error: 0.1              # wheel velocity measurement error 1-std (m/s)
   tf:
     send: true
-    frame_id: "map"
+    frame_id: "odom"
     child_frame_id: "base_link"
 
 # vim:set ts=2 sw=2 et:

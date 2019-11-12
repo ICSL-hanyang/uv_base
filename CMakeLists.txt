@@ -53,3 +53,7 @@ include_directories(
 
 add_executable(drone_base_node src/main.cpp src/vehicle.cpp)
 target_link_libraries(drone_base_node ${catkin_LIBRARIES})
+
+find_package(octomap REQUIRED)
+include_directories(${OCTOMAP_INCLUDE_DIRS})
+#target_link_libraries(${OCTOMAP_LIBRARIES})

@@ -19,6 +19,7 @@
     <arg name="interactive" default="true"/>
     <!-- generate urdf vehicle model -->
     <arg name="cmd" default="$(find xacro)/xacro $(find px4)/Tools/sitl_gazebo/models/$(arg vehicle)/urdf/$(arg vehicle).xacro rotors_description_dir:=$(find px4)/Tools/sitl_gazebo/models/$(arg vehicle) mavlink_udp_port:=$(arg mavlink_udp_port) --inorder"/>
+    <!-- enable_cameras:=$(arg enable_cameras) enable_depth:=$(arg enable_depth)  -->
     <param command="$(arg cmd)" name="rotors_description"/>
     <!-- PX4 SITL -->
     <arg unless="$(arg interactive)" name="px4_command_arg1" value=""/>

@@ -13,6 +13,7 @@
     <arg name="debug" default="false"/>
     <arg name="verbose" default="false"/>
     <arg name="paused" default="false"/>
+    <arg name="drone_base" default="/home/kdh/catkin_ws/src/drone_base"/>
 
 	<!-- setpoint ctrl -->
 	<arg name="num_drone" default="1"/>
@@ -37,10 +38,10 @@
         <arg name="ID" value="1"/>
 		<arg name="fcu_url" default="udp://:13201@$(arg user_ip):13101"/>
 		<arg name="gcs_url" default="udp://:14540@$(arg user_ip):13301"/>
-        <include file="$(find drone_base)/launch/SITL_drone_base.launch">
-            <!-- <arg name="x" value="-12.792"/> -->
-            <arg name="x" value="0"/>
-            <arg name="y" value="0"/>
+        <include file="$(arg drone_base)/launch/SITL_drone_base.launch">
+            <arg name="x" value="-12.792"/>
+            <!-- <arg name="x" value="0"/> -->
+            <arg name="y" value="5"/>
             <arg name="z" value="0"/>
             <!-- <arg name="x" value="0"/>
             <arg name="y" value="0"/>
@@ -49,7 +50,7 @@
             <arg name="P" value="0"/>
             <arg name="Y" value="0"/>
             <!-- <arg name="vehicle" value="$(arg vehicle)"/> -->
-            <arg name="rcS" value="$(find drone_base)/config/posix-configs/SITL/init/$(arg est)/$(arg vehicle)"/>
+            <arg name="rcS" value="$(arg drone_base)/config/posix-configs/SITL/init/$(arg est)/$(arg vehicle)"/>
             <arg name="mavlink_udp_port" value="13001"/>
             <arg name="ID" value="$(arg ID)"/>
         </include>
@@ -65,14 +66,25 @@
 			<!-- load blacklist, config -->
 			<!-- <rosparam command="load" file="$(find mavros)/launch/px4_pluginlists.yaml"/>
 			<rosparam command="load" file="$(find mavros)/launch/px4_config.yaml" /> -->
-            <rosparam command="load" file="$(find drone_base)/launch/px4_pluginlists_drone_base.yaml"/>
-			<rosparam command="load" file="$(find drone_base)/launch/px4_config_drone_base.yaml" />
+            <rosparam command="load" file="$(arg drone_base)/launch/px4_pluginlists_drone_base.yaml"/>
+			<rosparam command="load" file="$(arg drone_base)/launch/px4_config_drone_base.yaml" />
 		</node>
 	</group>
-    <arg name="drone_base_config_yaml" default="$(find drone_base)/config/drone-configs/config.yaml" />
+    <arg name="drone_base_config_yaml" default="$(arg drone_base)/config/drone-configs/config.yaml" />
 	<node name="drone_base_node" pkg="drone_base" type="drone_base_node" output="screen" respawn="true">
 		<rosparam command="load" file="$(arg drone_base_config_yaml)"/>
 		<param name="num_drone" value="$(arg num_drone)"/>
 	</node>
-    
+
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+        <param name="resolution" value="0.05" />
+        <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
+        <param name="frame_id" type="string" value="map" />
+        <!-- maximum range to integrate (speedup!) -->
+        <!-- <param name="sensor_model/max_range" value="100.0" /> -->
+        <!-- data source to integrate (PointCloud2) -->
+        <remap from="cloud_in" to="/scan_matched_points2" />
+    </node>
+
+
 </launch>

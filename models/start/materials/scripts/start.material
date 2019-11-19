@@ -1,0 +1,13 @@
+material TexturedShape/Start
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture start.png
+      }
+    }
+  }
+}

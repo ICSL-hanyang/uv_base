@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="end">
+   <static>true</static>
+    <pose>0 0 0.5 0 0 0</pose>
+    <link name="box">
+      <pose>0 -1.5 0 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>2 2 0.01</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>2 2 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://end/materials/scripts</uri>
+            <uri>model://end/materials/textures</uri>
+            <name>TexturedShape/End</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
+

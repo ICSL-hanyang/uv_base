@@ -1,0 +1,13 @@
+material TexturedShape/End
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture end.png
+      }
+    }
+  }
+}

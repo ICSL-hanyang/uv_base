@@ -50,7 +50,7 @@ global_position:
   gps_uere: 1.0             # User Equivalent Range Error (UERE) of GPS sensor (m)
   use_relative_alt: true    # use relative altitude for local coordinates
   tf:
-    send: true               # send TF?
+    send: false               # send TF?
     frame_id: "map"  # TF frame_id
     global_frame_id: "earth"  # TF earth frame_id
     child_frame_id: "base_link" # TF child_frame_id
@@ -150,7 +150,7 @@ distance_sensor:
     frame_id: "sf10a_laser"
     orientation: PITCH_270
     field_of_view: 0.0  # XXX TODO
-    send_tf: true
+    send_tf: false
       #   sensor_position: {x:  0.0, y:  0.0, z:  -0.1}
     sensor_position: {x:  0.0, y:  -0.05, z:  -0.025}
 #   sonar_1_sub:
@@ -185,7 +185,7 @@ fake_gps:
   fix_type: 3             # type of GPS fix (default: 3D)
   tf:
     listen: false
-    send: true           # send TF?
+    send: false           # send TF?
     frame_id: "map"       # TF frame_id
     child_frame_id: "fix" # TF child_frame_id
     rate_limit: 10.0      # TF rate

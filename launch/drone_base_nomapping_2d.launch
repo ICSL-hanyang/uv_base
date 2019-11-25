@@ -78,20 +78,10 @@
 
     <!-- <node pkg="depth_tf_pub" type="depth_tf_pub_node"
           args="/base_link" name="depthcamera_link" /> -->
-    <node pkg="drone_base" type="odometry_tf_pub_node"
+    <!-- <node pkg="drone_base" type="odometry_tf_pub_node"
           args="/base_link" name="odometry_tf_pub_node" />
     <node pkg="drone_base" type="depthcamera_link_tf_pub_node"
-          args="/odometry" name="depthcamera_link_tf_pub_node" />
-
-    <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
-        <param name="resolution" value="0.05" />
-        <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
-        <param name="frame_id" type="string" value="map" />
-        <!-- maximum range to integrate (speedup!) -->
-        <!-- <param name="sensor_model/max_range" value="100.0" /> -->
-        <!-- data source to integrate (PointCloud2) -->
-        <remap from="cloud_in" to="/base_drone/depthcamera/depth/points" />
-    </node>
+          args="/odometry" name="depthcamera_link_tf_pub_node" /> -->
 
 
 </launch>

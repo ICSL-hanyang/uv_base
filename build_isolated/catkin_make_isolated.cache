@@ -1,0 +1,2 @@
+
+-G Ninja -DCATKIN_DEVEL_PREFIX=/home/kdh/catkin_ws/src/drone_base/devel_isolated -DCMAKE_INSTALL_PREFIX=/home/kdh/catkin_ws/src/drone_base/install_isolated

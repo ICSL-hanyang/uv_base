@@ -1,0 +1,5 @@
+<launch>
+    <node name="rviz" pkg="rviz" type="rviz" required="true"
+        args="-d $(find drone_base)/config/drone-configs/drone_base.rviz" >
+    </node>
+</launch>

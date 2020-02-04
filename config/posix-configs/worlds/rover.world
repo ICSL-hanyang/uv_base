@@ -36,7 +36,7 @@
       <real_time_update_rate>500</real_time_update_rate>
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
     </physics>
-    <gui fullscreen='0'>
+    <!-- <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose>5.4634 -5.46339 2.17586 0 0.275643 2.35619</pose>
         <view_controller>orbit</view_controller>
@@ -45,6 +45,6 @@
           <name>rover</name>
         </track_visual>
       </camera>
-    </gui>
+    </gui> -->
   </world>
 </sdf>

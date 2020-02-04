@@ -2,20 +2,20 @@
     <!-- MAVROS posix SITL environment launch script -->
     <!-- launches Gazebo environment and 2x: MAVROS, PX4 SITL, and spawns vehicle -->
     <!-- vehicle model and world -->
-    <arg name="est" default="ekf2"/>
+    <arg name="est" value="ekf2"/>
     <!-- <arg name="vehicle" default="iris"/> -->
-    <arg name="vehicle" default="base_drone"/>
+    <arg name="vehicle" value="base_drone"/>
     <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/iitp.world"/> -->
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/iitp_noceiling_v6.world"/>
+    <arg name="world" value="$(find mavlink_sitl_gazebo)/worlds/iitp_noceiling_v6.world"/>
     <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/> -->
     <!-- gazebo configs -->
-    <arg name="gui" default="true"/>
-    <arg name="debug" default="false"/>
-    <arg name="verbose" default="false"/>
-    <arg name="paused" default="false"/>
+    <arg name="gui" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="verbose" value="false"/>
+    <arg name="paused" value="false"/>
 
 	<!-- setpoint ctrl -->
-	<arg name="num_drone" default="1"/>
+	<arg name="num_drone" value="1"/>
 	
     <!-- Gazebo sim -->
     

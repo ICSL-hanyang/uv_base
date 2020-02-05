@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv, "drone_base_node");
+	ros::init(argc, argv, "uv_base_node");
 	ros::NodeHandle nh("~");
 	ros::Rate rate(10);
 

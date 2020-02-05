@@ -19,7 +19,6 @@ int main(int argc, char **argv)
 	ros::NodeHandle n("");
 	ros::Rate rate(10);
     ros::Subscriber joy_sub = n.subscribe("joy", 100, joyCB);
-
 	ros::Publisher joy_pub = n.advertise<geometry_msgs::Twist>("mavros/setpoint_velocity/cmd_vel_unstamped", 20);
 
 	geometry_msgs::Twist msg_joy_pub;

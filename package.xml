@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>drone_base</name>
+  <name>uv_base</name>
   <version>0.0.4</version>
   <description>drone base</description>
   <maintainer email="kiminstein@naver.com">kissw</maintainer>

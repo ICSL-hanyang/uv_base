@@ -51,5 +51,5 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(drone_base_node src/main.cpp src/vehicle.cpp)
+add_executable(drone_base_node src/main.cpp src/vehicle.cpp src/JoystickControl.cpp)
 target_link_libraries(drone_base_node ${catkin_LIBRARIES})

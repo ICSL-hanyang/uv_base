@@ -46,10 +46,18 @@
         <arg name="respawn_gazebo" value="$(arg respawn_gazebo)"/>
     </include>
     <!-- MAVROS -->
-    <include file="$(find mavros)/launch/apm2.launch">
+    <include file="$(find mavros)/launch/px4.launch">
         <!-- GCS link is provided by SITL -->
         <arg name="gcs_url" value=""/>
         <arg name="fcu_url" value="$(arg fcu_url)"/>
         <arg name="respawn_mavros" value="$(arg respawn_mavros)"/>
     </include>
+
+    <!-- Joystick -->
+    <node name="joy_node" pkg="joy" type="joy_node" output="screen" respawn="true">
+    </node>
+    <node name="joystick_control_node" pkg="JoyControl" type="joystick_control_node" output="screen" respawn="true">
+    </node>
+
+
 </launch>

@@ -1,0 +1,14 @@
+material People/Man1
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture man.jpg
+      }
+    }
+  }
+}
+

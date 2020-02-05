@@ -10,7 +10,7 @@
                 "/home/kdh/catkin_ws/install_isolated/include/**",
                 "/opt/ros/kinetic/include/**",
                 "/home/kdh/catkin_ws/src/ceres-solver/include/**",
-                "/home/kdh/catkin_ws/src/drone_base/include/**",
+                "/home/kdh/catkin_ws/src/uv_base/include/**",
                 "/usr/include/**"
             ],
             "name": "ROS",

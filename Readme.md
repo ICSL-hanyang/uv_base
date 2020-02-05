@@ -72,16 +72,16 @@ $ sudo ./install_geographiclib_datasets.sh
 
 
 $ cd ~/catkin_ws/src
-$ git clone https://github.com/ICSL-hanyang/drone_base.git
+$ git clone https://github.com/ICSL-hanyang/uv_base.git
 $ cd ~/catkin_ws && catkin_make
 
 
-$ roslaunch drone_base drone_base.launch
+$ roslaunch uv_base uv_base.launch
 
-단 위 명령어를 실행하기전에 drone_base 패키지 내의 models, worlds 폴더안에 있는 파일들을 옮겨야함 Firmware 폴더로 옮겨야함.
-즉, drone_base/models 안에 있는 파일을 ~/Firmware/Tools/sitl_gazebo/models 로 옮기고
-drone_base/worlds 안에 있는 파일을 ~/Firmware/Tools/sitl_gazebo/worlds 로 옮긴 뒤
-$ roslaunch drone_base drone_base.launch
+단 위 명령어를 실행하기전에 uv_base 패키지 내의 models, worlds 폴더안에 있는 파일들을 옮겨야함 Firmware 폴더로 옮겨야함.
+즉, uv_base/models 안에 있는 파일을 ~/Firmware/Tools/sitl_gazebo/models 로 옮기고
+uv_base/worlds 안에 있는 파일을 ~/Firmware/Tools/sitl_gazebo/worlds 로 옮긴 뒤
+$ roslaunch uv_base uv_base.launch
 를 실행해주면 됨
 
 

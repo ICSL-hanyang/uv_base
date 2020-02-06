@@ -15,8 +15,8 @@
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="rover"/>
     <arg name="world" default="$(find uv_base)/config/posix-configs/worlds/rover_follow.world"/>
-    <!-- <arg name="world" default="$(find uv_base)/config/posix-configs/worlds/evgp.world"/> -->
-    <arg name="sdf" default="$(find uv_base)/config/posix-configs/models/$(arg vehicle)/$(arg vehicle).sdf"/>
+    <arg name="world" default="$(find uv_base)/config/posix-configs/worlds/evgp.world"/>
+    <!-- <arg name="sdf" default="$(find uv_base)/config/posix-configs/models/$(arg vehicle)/$(arg vehicle).sdf"/> -->
 
     <!-- gazebo configs -->
     <arg name="gui" default="true"/>

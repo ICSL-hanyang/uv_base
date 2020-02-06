@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   geographic_msgs
   sensor_msgs
   message_generation
+  tf
 )
 
 add_service_files(
@@ -45,6 +46,8 @@ include_directories(
 )
 
 add_executable(uv_base_node src/main.cpp src/vehicle.cpp)
-add_executable(joystick_control_node src/JoystickControl.cpp)
 target_link_libraries(uv_base_node ${catkin_LIBRARIES})
+add_executable(joystick_control_node src/joystick.cpp)
 target_link_libraries(joystick_control_node ${catkin_LIBRARIES})
+add_executable(sensor_node src/sensor.cpp)
+target_link_libraries(sensor_node ${catkin_LIBRARIES})

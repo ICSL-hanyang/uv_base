@@ -1,6 +1,9 @@
 {
     "files.associations": {
-        "vector": "cpp"
+        "vector": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "random": "cpp"
     },
     "python.autoComplete.extraPaths": [
         "/home/kdh/catkin_ws/devel_isolated/tensorflow_object_detector/lib/python2.7/dist-packages",

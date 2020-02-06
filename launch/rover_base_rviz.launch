@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <launch>
+
+
+    <arg name="rviz" default="true"/>
+    <arg name="joy" default="true"/>
     <!-- MAVROS posix SITL environment launch script -->
     <!-- launches MAVROS, PX4 SITL, Gazebo environment, and spawns vehicle -->
     <!-- vehicle pose -->
@@ -53,11 +57,19 @@
         <arg name="respawn_mavros" value="$(arg respawn_mavros)"/>
     </include>
 
+    <!-- ouster 16channel LiDAR tf broadcaster -->
+    <node pkg="uv_base" type="sensor_node" args1="/os1_sensor" args2="/camera_link" name="sensor_node" />
+
+
     <!-- Joystick -->
-    <node name="joy_node" pkg="joy" type="joy_node" output="screen" respawn="true">
+    <node if="$(arg joy)" name="joy_node" pkg="joy" type="joy_node" output="screen" respawn="true">
     </node>
-    <node name="joystick_control_node" pkg="uv_base" type="joystick_control_node" output="screen" respawn="true">
+    <node if="$(arg joy)" name="joystick_control_node" pkg="uv_base" type="joystick_control_node" output="screen" respawn="true">
     </node>
 
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find uv_base)/config/uv-configs/rviz/rover_description.urdf.xacro'" />
+    <!-- rviz -->
+    <node if="$(arg rviz)" type="rviz" name="rviz" pkg="rviz" args="-d $(find uv_base)/config/uv-configs/rviz/uv.rviz">
+    </node>
 
 </launch>

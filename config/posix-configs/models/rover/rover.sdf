@@ -905,11 +905,11 @@
 
     <!--realsense cam-->
     <include>
-      <uri>model://realsense_camera</uri>
-      <pose>0.5 0 0.7 0 0 0</pose>
+      <uri>model://depth_camera</uri>
+      <pose>0.4 0 0.6 0 0 0</pose>
     </include>
-        <joint name="realsense_camera_joint" type="revolute">
-      <child>realsense_camera::link</child>
+    <joint name="realsense_camera_joint" type="revolute">
+      <child>depth_camera::link</child>
       <parent>rover::base_link</parent>
       <axis>
         <xyz>0 0 1</xyz>
@@ -920,6 +920,12 @@
       </axis>
     </joint>
     <!--realsense cam-->
+    <!--ouster lidar-->
+    <include>
+      <uri>model://ouster</uri>
+      <pose>0 0 0.8 0 0 0</pose>
+    </include>
+    <!--ouster lidar-->
 
     <plugin name='barometer_plugin' filename='libgazebo_barometer_plugin.so'>
       <robotNamespace/>

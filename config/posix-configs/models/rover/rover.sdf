@@ -4,16 +4,21 @@
     <static>false</static>
     <link name="base_link">
       <inertial>
-        <!-- subtracted wheel weights from dry weight of 771 kg -->
-        <!-- http://www.polaris.com/en-us/ranger-utv/side-by-sides/ranger-ev/specifications -->
-        <mass>432.0</mass>
+      <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+      <!-- Solid cuboid of widht w, height h, depth d, and mass m -->
+      <!-- d:0.8  w:1.05m  h:0.4  -->
+      <!-- ixx = m(h^2 + d^2)/12 -->
+      <!-- iyy = m(w^2 + d^2)/12 -->
+      <!-- izz = m(w^2 + h^2)/12 -->
+        <mass>250</mass>
+        <!-- <mass>113.40</mass> -->
         <inertia>
-          <!-- <ixx>84</ixx>
+          <!-- <ixx>7.56</ixx>
           <ixy>0.0</ixy>
-          <iyy>330</iyy>
+          <iyy>16.466625</iyy>
           <ixz>0.0</ixz>
           <iyz>0.0</iyz>
-          <izz>330</izz> -->
+          <izz>11.930625</izz> -->
           <ixx>140</ixx>
           <ixy>0.0</ixy>
           <iyy>550</iyy>
@@ -421,8 +426,12 @@
       <pose>0.721338 0.429372 0.1214395 -1.52 0.0 0.0</pose>
       <!-- <pose>1.20223 0.71562 0.34697 -1.52 0.0 0.0</pose> -->
       <inertial>
+      <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+      <!-- Solid cylinder of radius r, height h and mass m -->
+      <!-- ixx = m(3(r^2) + h^2)/12 -->
+      <!-- iyy = m(3(r^2) + h^2)/12 -->
+      <!-- izz = m(r^2)/2 -->
         <mass>12</mass>
-        <!-- estimated from http://www.rzrforums.net/wheels-tires/1729-tire-wheel-weights-most-sizes.html -->
         <inertia>
           <ixx>0.3</ixx>
           <ixy>0.0</ixy>
@@ -493,7 +502,11 @@
       <pose>0.721338 -0.429372 0.1214395 1.52 0.0 0.0</pose>
       <inertial>
         <mass>12</mass>
-        <!-- estimated from http://www.rzrforums.net/wheels-tires/1729-tire-wheel-weights-most-sizes.html -->
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <inertia>
           <ixx>0.3</ixx>
           <ixy>0.0</ixy>
@@ -564,7 +577,11 @@
       <!-- <pose>-0.99377 0.71562 0.34697 -1.52 0.0 0.0</pose> -->
       <inertial>
         <mass>12</mass>
-        <!-- estimated from http://www.rzrforums.net/wheels-tires/1729-tire-wheel-weights-most-sizes.html -->
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <inertia>
           <ixx>3</ixx>
           <ixy>0.0</ixy>
@@ -635,7 +652,11 @@
       <!-- <pose>-0.99377 -0.71562 0.34697 1.52 0.0 0.0</pose> -->
       <inertial>
         <mass>12</mass>
-        <!-- estimated from http://www.rzrforums.net/wheels-tires/1729-tire-wheel-weights-most-sizes.html -->
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <inertia>
           <ixx>3</ixx>
           <ixy>0.0</ixy>
@@ -705,6 +726,11 @@
       <pose>0.721338 -0.3 0.1243025 1.570796 0.0 0.0</pose>
       <!-- <pose>1.20223 -0.5 0.35515 1.570796 0.0 0.0</pose> -->
       <inertial>
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <mass>1</mass>
         <inertia>
           <ixx>0.006</ixx>
@@ -736,6 +762,11 @@
       <pose>0.721338 0.3 0.1243025 1.570796 0.0 0.0</pose>
       <!-- <pose>1.20223 0.5 0.35515 1.570796 0.0 0.0</pose> -->
       <inertial>
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <mass>1</mass>
         <inertia>
           <ixx>0.006</ixx>
@@ -906,7 +937,7 @@
     <!--realsense cam-->
     <include>
       <uri>model://realsense_camera</uri>
-      <pose>0.4 0 0.6 0 0 0</pose>
+      <pose>0.4 0 1.5 0 0 0</pose>
     </include>
     <joint name="realsense_camera_joint" type="revolute">
       <child>realsense_camera::link</child>

@@ -4,9 +4,9 @@ takeoff_alt: 1.5
 
 # set velocity control PID gain
 pid:
-  kp: 0.8
+  kp: 0.3
   ki: 0.0
-  kd: 0.2
+  kd: 0.01
 
 # distance between drones
 spacing: 3.0
@@ -19,9 +19,9 @@ scen: '987'
 
 # setpoint control params
 setpoint:
-  kp_seek: 1.5
+  kp_seek: 1
   kp_sp: 2
   range_sp: 1.5
-  separate: true
+  separate: false
   vector_speed_limit: 1.5
   final_speed_limit: 0.75

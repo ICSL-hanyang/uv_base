@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <rosparam command="load" file="$(find uv_base)/config/uv-configs/config.yaml"/>
+    <node pkg="uv_base" type="uv_base_node" name="uv_base_node" output="screen" />
+
+</launch>

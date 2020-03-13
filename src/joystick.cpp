@@ -7,8 +7,8 @@ float msg_steer = 0;
 
 void joyCB(const sensor_msgs::Joy::ConstPtr &msg)
 {
-	msg_throttle 	= 	msg->axes.at(1);
-	msg_steer		=	msg->axes.at(2);
+	msg_throttle = msg->axes.at(1)*5;
+	msg_steer	= msg->axes.at(2)/3;
     ROS_INFO_STREAM("throttle : " << msg_throttle << " steer : " << msg_steer);
 
 }

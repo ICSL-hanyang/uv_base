@@ -60,10 +60,10 @@
     <node pkg="uv_base" type="sensor_node" name="sensor_node" />
 
     <!-- Joystick -->
-    <!-- <node if="$(arg joy)" name="joy_node" pkg="joy" type="joy_node" output="screen" respawn="true">
+    <node if="$(arg joy)" name="joy_node" pkg="joy" type="joy_node" output="screen" respawn="true">
     </node>
     <node if="$(arg joy)" name="joystick_control_node" pkg="uv_base" type="joystick_control_node" output="screen" respawn="true">
-    </node> -->
+    </node>
 
     <param name="robot_description" textfile="$(find uv_base)/config/posix-configs/models/rover/rover.urdf" />
     <!-- rviz -->

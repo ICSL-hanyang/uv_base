@@ -30,7 +30,7 @@ RoverPositionControl::control_velocity(const matrix::Vector3f &current_velocity,
 		if (angular_z_speed > 0.01f || angular_z_speed < -0.01f)
 		{ //조향이 있을때
 			const float wheel_base = _param_wheel_base.get();
-			float radius = desired_speed / angular_z_speed;
+			float radius = abs(desired_speed) / angular_z_speed;
 			const float desired_theta = atanf(wheel_base / radius);
 			float control_effort = desired_theta / _param_max_turn_angle.get();
 			control_effort = math::constrain(control_effort, -1.0f, 1.0f);

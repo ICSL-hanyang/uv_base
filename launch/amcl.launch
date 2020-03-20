@@ -7,7 +7,6 @@
 
   <!-- AMCL -->
   <node pkg="amcl" type="amcl" name="amcl">
-
     <param name="odom_frame_id"             value="odom"/>
     <param name="base_frame_id"             value="base_link"/>
     <param name="odom_alpha5"               value="0.1"/>
@@ -37,6 +36,6 @@
     <param name="recovery_alpha_slow"       value="0.001"/>
     <param name="recovery_alpha_fast"       value="0.01"/>
 
-
+    <remap from="scan" to="$(arg scan_topic)"/>
   </node>
 </launch>

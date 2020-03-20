@@ -1,6 +1,7 @@
 #include <ros/ros.h>
 #include <tf/transform_broadcaster.h>
 #include "geometry_msgs/PoseStamped.h"
+#include "geometry_msgs/PoseWithCovarianceStamped.h"
 #include "nav_msgs/Odometry.h"
 #include "sensor_msgs/Imu.h"
 
@@ -9,6 +10,7 @@ sensor_msgs::Imu imu_msgs;
 void sensor_tfCB(const geometry_msgs::PoseStamped &msg){
 	static tf::TransformBroadcaster br_ouster, br_depth;
 	tf::Transform ouster_transform, depth_transform;
+	ouster_transform.setOrigin( tf::Vector3(msg.pose.position.x, msg.pose.position.y, 1) ); //현재 base_link의 좌표를 받아옴.
 	ouster_transform.setOrigin( tf::Vector3(0, 0, 1) ); //현재 base_link의 좌표를 받아옴.
 	depth_transform.setOrigin( tf::Vector3(0, 0, 1) ); //현재 base_link의 좌표를 받아옴.
 	
@@ -34,10 +36,14 @@ void odomCB(const nav_msgs::Odometry &msg){
 
 	static tf::TransformBroadcaster br_odom;
 	tf::Transform odom_transform;
-	odom_transform.setOrigin( tf::Vector3(0, 0, 0) ); //현재 base_link의 좌표를 받아옴.
+	odom_transform.setOrigin( tf::Vector3(msg.pose.pose.position.x, msg.pose.pose.position.y, 0) ); //현재 base_link의 좌표를 받아옴.
 	
 	tf::Quaternion odom_q;
-	odom_q.setRPY( 0, 0, 0);
+	odom_q.setW(msg.pose.pose.orientation.w);
+	odom_q.setX(msg.pose.pose.orientation.x);
+	odom_q.setY(msg.pose.pose.orientation.y);
+	odom_q.setZ(msg.pose.pose.orientation.z);
+	// odom_q.setRPY( msg.pose.pose.orientation., 0, 0);
 	odom_transform.setRotation(odom_q);
 	br_odom.sendTransform(tf::StampedTransform(odom_transform, ros::Time::now(), "odom", "base_link"));
 }
@@ -70,6 +76,7 @@ int main(int argc, char **argv)
 	ros::Rate rate(50);
 	// ros::Subscriber odom = n.subscribe("/mavros/local_position/odom", 50, &odomCB);
 	// ros::Publisher imu_pub = n.advertise<sensor_msgs::Imu>("/imu_pub",1);
+	// ros::Subscriber sensor = n.subscribe("/robot_pose_ekf/odom_combined", 50, &sensor_tfCB);
 	ros::Subscriber sensor = n.subscribe("/mavros/local_position/pose", 50, &sensor_tfCB);
 	// ros::Subscriber imu = n.subscribe("/mavros/imu/data", 50, &imuCB);
 	while (ros::ok())

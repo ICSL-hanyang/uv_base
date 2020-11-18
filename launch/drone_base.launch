@@ -37,7 +37,7 @@
         <arg name="ID" value="1"/>
 		<arg name="fcu_url" default="udp://:13201@$(arg user_ip):13101"/>
 		<arg name="gcs_url" default="udp://:14540@$(arg user_ip):13301"/>
-        <include file="$(find drone_base)/launch/SITL_drone_base.launch">
+        <include file="$(find uv_base)/launch/SITL_uv_base.launch">
             <arg name="x" value="-12.792"/>
             <!-- <arg name="x" value="0"/> -->
             <arg name="y" value="5.5"/>
@@ -49,7 +49,7 @@
             <arg name="P" value="0"/>
             <arg name="Y" value="0"/>
             <!-- <arg name="vehicle" value="$(arg vehicle)"/> -->
-            <arg name="rcS" value="$(find drone_base)/config/posix-configs/SITL/init/$(arg est)/$(arg vehicle)"/>
+            <arg name="rcS" value="$(find uv_base)/config/posix-configs/SITL/init/$(arg est)/$(arg vehicle)"/>
             <arg name="mavlink_udp_port" value="13001"/>
             <arg name="ID" value="$(arg ID)"/>
         </include>
@@ -65,13 +65,13 @@
 			<!-- load blacklist, config -->
 			<!-- <rosparam command="load" file="$(find mavros)/launch/px4_pluginlists.yaml"/>
 			<rosparam command="load" file="$(find mavros)/launch/px4_config.yaml" /> -->
-            <rosparam command="load" file="$(find drone_base)/launch/px4_pluginlists_drone_base.yaml"/>
-			<rosparam command="load" file="$(find drone_base)/launch/px4_config_drone_base.yaml" />
+            <rosparam command="load" file="$(find uv_base)/launch/px4_pluginlists_uv_base.yaml"/>
+			<rosparam command="load" file="$(find uv_base)/launch/px4_config_uv_base.yaml" />
 		</node>
 	</group>
-    <arg name="drone_base_config_yaml" default="$(find drone_base)/config/drone-configs/config.yaml" />
-	<node name="drone_base_node" pkg="drone_base" type="drone_base_node" output="screen" respawn="true">
-		<rosparam command="load" file="$(arg drone_base_config_yaml)"/>
+    <arg name="uv_base_config_yaml" default="$(find uv_base)/config/drone-configs/config.yaml" />
+	<node name="uv_base_node" pkg="uv_base" type="uv_base_node" output="screen" respawn="true">
+		<rosparam command="load" file="$(arg uv_base_config_yaml)"/>
 		<param name="num_drone" value="$(arg num_drone)"/>
 	</node>
     

@@ -27,9 +27,9 @@
 #include <mavros_msgs/CommandHome.h>
 #include <mavros_msgs/HomePosition.h>
 #include <mavros_msgs/GlobalPositionTarget.h>
-#include <drone_base/srvGoToVehicle.h>
-#include <drone_base/srvMultiSetpointLocal.h>
-#include <drone_base/srvMultiSetpointGlobal.h>
+#include <uv_base/srvGoToVehicle.h>
+#include <uv_base/srvMultiSetpointLocal.h>
+#include <uv_base/srvMultiSetpointGlobal.h>
 
 #define CONSTANTS_RADIUS_OF_EARTH 6371000 /* meters (m)		*/
 #define M_DEG_TO_RAD (M_PI / 180.0)
@@ -233,12 +233,12 @@ class SwarmVehicle
 	void scenario6();
 	void hexToCoord(std::vector<std::pair<int,int>> &, const uint8_t &, const int &, const bool &);
 
-	bool multiSetpointLocal(drone_base::srvMultiSetpointLocal::Request &req,
-							drone_base::srvMultiSetpointLocal::Response &res);
-	bool multiSetpointGlobal(drone_base::srvMultiSetpointGlobal::Request &req,
-							 drone_base::srvMultiSetpointGlobal::Response &res);
-	bool gotoVehicle(drone_base::srvGoToVehicle::Request &req,
-					 drone_base::srvGoToVehicle::Response &res);
+	bool multiSetpointLocal(uv_base::srvMultiSetpointLocal::Request &req,
+							uv_base::srvMultiSetpointLocal::Response &res);
+	bool multiSetpointGlobal(uv_base::srvMultiSetpointGlobal::Request &req,
+							 uv_base::srvMultiSetpointGlobal::Response &res);
+	bool gotoVehicle(uv_base::srvGoToVehicle::Request &req,
+					 uv_base::srvGoToVehicle::Response &res);
 
 	static tf2::Vector3 convertGeoToENU(const sensor_msgs::NavSatFix &,
 										const sensor_msgs::NavSatFix &);

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(drone_base)
+project(uv_base)
 
 add_compile_options(-std=c++11)
 
@@ -41,7 +41,7 @@ generate_messages(
 
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES drone_base
+  LIBRARIES uv_base
   CATKIN_DEPENDS geometry_msgs mavros mavros_extras roscpp std_msgs
 # DEPENDS system_lib
 )
@@ -51,5 +51,5 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(drone_base_node src/main.cpp src/vehicle.cpp)
-target_link_libraries(drone_base_node ${catkin_LIBRARIES})
+add_executable(uv_base_node src/main.cpp src/vehicle.cpp)
+target_link_libraries(uv_base_node ${catkin_LIBRARIES})

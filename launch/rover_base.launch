@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="rviz" default="true"/>
-    <arg name="joy" default="true"/>
+    <arg name="joy" default="false"/>
     <!-- MAVROS posix SITL environment launch script -->
     <!-- launches MAVROS, PX4 SITL, Gazebo environment, and spawns vehicle -->
     <!-- vehicle pose -->

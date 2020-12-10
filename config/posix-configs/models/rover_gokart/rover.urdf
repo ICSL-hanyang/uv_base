@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<robot name="rover">
+  <material name="rover_color">
+    <color rgba="0.153137255 0.350196078 0.158039216 1.0"/>
+  </material>
+  <link name="base_link">
+    <inertial>
+      <mass value="432.0"/>
+      <origin rpy="0 0 0" xyz="0.1 0 0.4"/>
+      <inertia ixx="140" ixy="0.0" ixz="0.0" iyy="550" iyz="0.0" izz="550"/>
+    </inertial>
+    <collision name="base_link_bottom">
+      <origin rpy="0 0 0" xyz="0.12 0 0.11725"/>
+      <geometry>
+        <box size="0.804 0.994476 0.036"/>
+      </geometry>
+    </collision>
+    <collision name="cargo_bottom">
+      <origin rpy="0 0 0" xyz="-0.6 0 0.32235"/>
+      <geometry>
+        <box size="0.627654 1.01988 0.006"/>
+      </geometry>
+    </collision>
+    <collision name="cargo_front">
+      <origin rpy="0 0 0" xyz="-0.297 0 0.636"/>
+      <geometry>
+        <box size="0.03 1.019892 0.162"/>
+      </geometry>
+    </collision>
+    <collision name="cargo_back">
+      <origin rpy="0 0 0" xyz="-0.879 0 0.371"/>
+      <geometry>
+        <box size="0.03 1.019892 0.0945"/>
+      </geometry>
+    </collision>
+    <collision name="cargo_left">
+      <origin rpy="0 0 0" xyz="-0.58199 0.49494 0.371"/>
+      <geometry>
+        <box size="0.627654 0.03 0.162"/>
+      </geometry>
+    </collision>
+    <collision name="cargo_right">
+      <origin rpy="0 0 0" xyz="-0.58199 -0.49494 0.371"/>
+      <geometry>
+        <box size="0.627654 0.03 0.0567"/>
+      </geometry>
+    </collision>
+    <collision name="seat">
+      <origin rpy="0 0 0" xyz="0 0 0.217"/>
+      <geometry>
+        <box size="0.313002 0.823236 0.320214"/>
+      </geometry>
+    </collision>
+    <collision name="mud_seat">
+      <origin rpy="0 0 0" xyz="0 0 0.516"/>
+      <geometry>
+        <box size="0.313002 0.78 0.035"/>
+      </geometry>
+    </collision>
+    <collision name="seat_back">
+      <origin rpy="0 -0.2 0" xyz="-0.156 0 0.39375"/>
+      <geometry>
+        <box size="0.036 0.823236 0.036"/>
+      </geometry>
+    </collision>
+    <collision name="engine">
+      <origin rpy="0 0 0" xyz="0.672 0 0.245"/>
+      <geometry>
+        <box size="0.348 0.78 0.28"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <origin rpy="1.57079 0 -1.57079" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://uv_base/config/posix-configs/models/rover/meshes/polaris.stl" scale="0.0006 0.00035 0.0006"/>
+      </geometry>
+      <material name="rover_color"/>
+    </visual>
+  </link>
+</robot>

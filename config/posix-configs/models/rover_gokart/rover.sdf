@@ -4,10 +4,21 @@
     <static>false</static>
     <link name="base_link">
       <inertial>
-        <!-- subtracted wheel weights from dry weight of 771 kg -->
-        <!-- http://www.polaris.com/en-us/ranger-utv/side-by-sides/ranger-ev/specifications -->
-        <mass>720.0</mass>
+      <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+      <!-- Solid cuboid of widht w, height h, depth d, and mass m -->
+      <!-- d:0.8  w:1.05m  h:0.4  -->
+      <!-- ixx = m(h^2 + d^2)/12 -->
+      <!-- iyy = m(w^2 + d^2)/12 -->
+      <!-- izz = m(w^2 + h^2)/12 -->
+        <mass>250</mass>
+        <!-- <mass>113.40</mass> -->
         <inertia>
+          <!-- <ixx>7.56</ixx>
+          <ixy>0.0</ixy>
+          <iyy>16.466625</iyy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+          <izz>11.930625</izz> -->
           <ixx>140</ixx>
           <ixy>0.0</ixy>
           <iyy>550</iyy>
@@ -23,6 +34,7 @@
         <geometry>
           <mesh>
             <uri>model://rover/meshes/polaris.dae</uri>
+            <scale>0.6 0.6 0.35</scale>
             <submesh>
               <name>Body</name>
               <center>false</center>
@@ -38,58 +50,69 @@
         </material>
       </visual>
       <collision name="base_link_bottom">
-        <pose>0.2 0.0 0.335 0 0 0</pose>
+        <pose>0.12 0.0 0.11725 0 0 0</pose>
+        <!-- <pose>0.2 0.0 0.335 0 0 0</pose> -->
         <geometry>
           <box>
-            <size>1.34 1.65746 0.06</size>
+            <size>0.804 0.994476 0.036</size>
+            <!-- <size>1.34 1.65746 0.06</size> -->
           </box>
         </geometry>
       </collision>
       <collision name="cargo_bottom">
-        <pose>-1.0 0.0 0.921 0.0 0.0 0.0</pose>
+        <pose>-0.6 0.0 0.32235 0.0 0.0 0.0</pose>
+        <!-- <pose>-1.0 0.0 0.921 0.0 0.0 0.0</pose> -->
         <geometry>
           <box>
-            <size>1.04609 1.6998 0.01</size>
+            <size>0.627654 1.01988 0.006</size>
+            <!-- <size>1.04609 1.6998 0.01</size> -->
           </box>
         </geometry>
       </collision>
+        
       <collision name="cargo_front">
-        <pose>-0.495 0.0 1.06 0.0 0.0 0.0</pose>
+        <pose>-0.297 0.0 0.636 0.0 0.0 0.0</pose>
+        <!-- <pose>-0.495 0.0 1.06 0.0 0.0 0.0</pose> -->
         <geometry>
           <box>
-            <size>0.05 1.69982 0.27</size>
+            <size>0.03 1.019892 0.162</size>
+            <!-- <size>0.05 1.69982 0.27</size> -->
           </box>
         </geometry>
       </collision>
       <collision name="cargo_back">
-        <pose>-1.465 0.0 1.06 0.0 0.0 0.0</pose>
+        <pose>-0.879 0.0 0.371 0.0 0.0 0.0</pose>
+        <!-- <pose>-1.465 0.0 1.06 0.0 0.0 0.0</pose> -->
         <geometry>
           <box>
-            <size>0.05 1.69982 0.27</size>
+            <size>0.03 1.019892 0.0945</size>
+            <!-- <size>0.05 1.69982 0.27</size> -->
           </box>
         </geometry>
       </collision>
       <collision name="cargo_left">
-        <pose>-0.97 0.82491 1.06 0.0 0.0 0.0</pose>
+        <pose>-0.582 0.494946 0.371 0.0 0.0 0.0</pose>
+        <!-- <pose>-0.97 0.82491 1.06 0.0 0.0 0.0</pose> -->
         <geometry>
           <box>
-            <size>1.04609 0.05 0.27</size>
+            <size>0.627654 0.03 0.162</size>
           </box>
         </geometry>
       </collision>
       <collision name="cargo_right">
-        <pose>-0.97 -0.82491 1.06 0.0 0.0 0.0</pose>
+        <pose>-0.582 -0.494946 0.371 0.0 0.0 0.0</pose>
         <geometry>
           <box>
-            <size>1.04609 0.05 0.27</size>
+            <size>0.627654 0.03 0.0567</size>
           </box>
         </geometry>
       </collision>
       <collision name="seat">
-        <pose>0.0 0.0 0.62 0 0 0</pose>
+        <pose>0.0 0.0 0.217 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.52167 1.37206 0.53369</size>
+            <size>0.313002 0.823236 0.320214</size>
+            <!-- <size>0.52167 1.37206 0.53369</size> -->
           </box>
         </geometry>
         <surface>
@@ -101,10 +124,11 @@
         </surface>
       </collision>
       <collision name="mud_seat">
-        <pose>0.0 0.0 0.86 0 0 0</pose>
+        <pose>0.0 0.0 0.516 0 0 0</pose>
+        <!-- <pose>0.0 0.0 0.86 0 0 0</pose> -->
         <geometry>
           <box>
-            <size>0.52167 1.30 0.1</size>
+            <size>0.313002 0.78 0.035</size>
           </box>
         </geometry>
         <surface>
@@ -113,100 +137,33 @@
           </contact>
         </surface>
       </collision>
-      <sensor name="seat_contact" type="contact">
+      <!-- <sensor name="seat_contact" type="contact">
         <always_on>true</always_on>
         <update_rate>1000</update_rate>
         <contact>
           <collision>mud_seat</collision>
         </contact>
-      </sensor>
+      </sensor> -->
       <collision name="seat_back">
-        <pose>-0.26 0.0 1.125 0.0 -0.2 0.0</pose>
+        <pose>-0.156 0.0 0.39375 0.0 -0.2 0.0</pose>
+        <!-- <pose>-0.26 0.0 1.125 0.0 -0.2 0.0</pose> -->
         <geometry>
           <box>
-            <size>0.06 1.37206 0.6</size>
+            <size>0.036 0.823236 0.036</size>
           </box>
         </geometry>
       </collision>
       <collision name="engine">
-        <pose>1.12 0.0 0.7 0.0 0.0 0.0</pose>
+        <pose>0.672 0.0 0.245 0.0 0.0 0.0</pose>
         <geometry>
           <box>
-            <size>0.58 1.3 0.8</size>
+            <size>0.348 0.78 0.28</size>
+            <!-- <size>0.58 1.3 0.8</size> -->
           </box>
         </geometry>
       </collision>
-      <collision name="rollcage_top_left">
-        <pose>-0.02 0.76 1.936 0 1.60 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.03</radius>
-            <length>0.68</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <collision name="rollcage_top_right">
-        <pose>-0.02 -0.76 1.936 0 1.60 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.03</radius>
-            <length>0.68</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <collision name="rollcage_top_front">
-        <pose>0.315 0.0 1.93 0 -1.0 0</pose>
-        <geometry>
-          <box>
-            <size>0.01299 1.54 0.10226</size>
-          </box>
-        </geometry>
-      </collision>
-      <collision name="rollcage_top_back">
-        <pose>-0.410 0.0 1.88 0 0 0</pose>
-        <geometry>
-          <box>
-            <size>0.01299 1.54 0.10226</size>
-          </box>
-        </geometry>
-      </collision>
-      <collision name="rollcage_front_left">
-        <pose>0.602 0.755 1.45 0 -0.54 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.03</radius>
-            <length>1.15</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <collision name="rollcage_front_right">
-        <pose>0.602 -0.755 1.45 0 -0.54 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.03</radius>
-            <length>1.15</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <collision name="rollcage_back_left">
-        <pose>-0.4 0.755 1.45 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.03</radius>
-            <length>1.00</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <collision name="rollcage_back_right">
-        <pose>-0.4 -0.755 1.45 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.03</radius>
-            <length>1.00</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <collision name="rollcage_X_1">
+      
+      <!-- <collision name="rollcage_X_1">
         <pose>-0.411 0.04 1.445 0.397 0 0</pose>
         <geometry>
           <box>
@@ -269,8 +226,8 @@
             <size>0.03 0.1 0.05</size>
           </box>
         </geometry>
-      </collision>
-      <visual name="cargo_visual">
+      </collision> -->
+      <!-- <visual name="cargo_visual">
         <pose>-1.0 0 1.03230 0 0 -1.5707</pose>
         <geometry>
           <mesh>
@@ -288,8 +245,8 @@
             <name>PolarisXP900/Diffuse</name>
           </script>
         </material>
-      </visual>
-      <visual name="tailgate_visual">
+      </visual> -->
+      <!-- <visual name="tailgate_visual">
         <pose>-1.492 0 1.03 0 0 -1.5707</pose>
         <geometry>
           <mesh>
@@ -307,8 +264,8 @@
             <name>PolarisXP900/Diffuse</name>
           </script>
         </material>
-      </visual>
-      <visual name="front_left_brake_visual">
+      </visual> -->
+      <!-- <visual name="front_left_brake_visual">
         <pose>1.12 -0.57488 0.35516 3.1415 0 1.5707</pose>
         <geometry>
           <mesh>
@@ -345,8 +302,8 @@
             <name>PolarisXP900/Diffuse</name>
           </script>
         </material>
-      </visual>
-      <visual name="central_hump1">
+      </visual> -->
+      <!-- <visual name="central_hump1">
         <pose>0.55 -0.1 0.4 0 0 0</pose>
         <geometry>
           <box>
@@ -429,7 +386,7 @@
             <name>Gazebo/DarkGrey</name>
           </script>
         </material>
-      </visual>
+      </visual> -->
     </link>
     <link name='rover/imu_link'>
       <pose>0 0 0 0 0 0</pose>
@@ -450,7 +407,8 @@
       <child>rover/imu_link</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>1 0 0</xyz>
+        <xyz>0.6 0 0</xyz>
+        <!-- <xyz>1 0 0</xyz> -->
         <limit>
           <lower>0</lower>
           <upper>0</upper>
@@ -465,24 +423,37 @@
       </axis>
     </joint>
     <link name="front_left_wheel">
-      <pose>1.20223 0.71562 0.34697 -1.52 0.0 0.0</pose>
+      <pose>0.721338 0.429372 0.1214395 -1.52 0.0 0.0</pose>
+      <!-- <pose>1.20223 0.71562 0.34697 -1.52 0.0 0.0</pose> -->
       <inertial>
+      <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+      <!-- Solid cylinder of radius r, height h and mass m -->
+      <!-- ixx = m(3(r^2) + h^2)/12 -->
+      <!-- iyy = m(3(r^2) + h^2)/12 -->
+      <!-- izz = m(r^2)/2 -->
         <mass>12</mass>
-        <!-- estimated from http://www.rzrforums.net/wheels-tires/1729-tire-wheel-weights-most-sizes.html -->
         <inertia>
-          <ixx>0.5</ixx>
+          <ixx>0.3</ixx>
+          <ixy>0.0</ixy>
+          <iyy>0.3</iyy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+          <izz>0.6</izz>
+          <!-- <ixx>0.5</ixx>
           <ixy>0.0</ixy>
           <iyy>0.5</iyy>
           <ixz>0.0</ixz>
           <iyz>0.0</iyz>
-          <izz>1.0</izz>
+          <izz>1.0</izz> -->
         </inertia>
       </inertial>
       <collision name="collision">
         <geometry>
           <cylinder>
-            <radius>0.3175</radius>
-            <length>0.2794</length>
+            <radius>0.1905</radius>
+            <length>0.16764</length>
+            <!-- <radius>0.3175</radius>
+            <length>0.2794</length> -->
           </cylinder>
         </geometry>
         <max_contacts>1</max_contacts>
@@ -509,7 +480,9 @@
         <geometry>
           <mesh>
             <uri>model://rover/meshes/polaris.dae</uri>
-            <scale>1.003700111 0.886200464 0.886200464</scale>
+            <scale>0.6022 0.5317 0.5317</scale>
+            <!-- <scale>0.602220067 0.531720278 0.310170162</scale> -->
+            <!-- <scale>1.003700111 0.886200464 0.886200464</scale> -->
             <submesh>
               <name>Wheel_Front_Left</name>
               <center>true</center>
@@ -526,24 +499,36 @@
       </visual>
     </link>
     <link name="front_right_wheel">
-      <pose>1.20223 -0.71562 0.34697 1.52 0.0 0.0</pose>
+      <pose>0.721338 -0.429372 0.1214395 1.52 0.0 0.0</pose>
       <inertial>
         <mass>12</mass>
-        <!-- estimated from http://www.rzrforums.net/wheels-tires/1729-tire-wheel-weights-most-sizes.html -->
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <inertia>
-          <ixx>0.5</ixx>
+          <ixx>0.3</ixx>
+          <ixy>0.0</ixy>
+          <iyy>0.3</iyy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+          <izz>0.6</izz>
+          <!-- <ixx>0.5</ixx>
           <ixy>0.0</ixy>
           <iyy>0.5</iyy>
           <ixz>0.0</ixz>
           <iyz>0.0</iyz>
-          <izz>1.0</izz>
+          <izz>1.0</izz> -->
         </inertia>
       </inertial>
       <collision name="collision">
         <geometry>
           <cylinder>
-            <radius>0.3175</radius>
-            <length>0.2794</length>
+            <radius>0.1905</radius>
+            <length>0.16764</length>
+            <!-- <radius>0.3175</radius>
+            <length>0.2794</length> -->
           </cylinder>
         </geometry>
         <max_contacts>1</max_contacts>
@@ -570,7 +555,8 @@
         <geometry>
           <mesh>
             <uri>model://rover/meshes/polaris.dae</uri>
-            <scale>1.003700111 0.886200464 0.886200464</scale>
+            <!-- <scale>1.003700111 0.886200464 0.886200464</scale> -->
+            <scale>0.6022 0.5317 0.5317</scale>
             <submesh>
               <name>Wheel_Front_Right</name>
               <center>true</center>
@@ -587,24 +573,37 @@
       </visual>
     </link>
     <link name="rear_left_wheel">
-      <pose>-0.99377 0.71562 0.34697 -1.52 0.0 0.0</pose>
+      <pose>-0.596262 0.429372 0.1214395 -1.52 0.0 0.0</pose>
+      <!-- <pose>-0.99377 0.71562 0.34697 -1.52 0.0 0.0</pose> -->
       <inertial>
         <mass>12</mass>
-        <!-- estimated from http://www.rzrforums.net/wheels-tires/1729-tire-wheel-weights-most-sizes.html -->
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <inertia>
-          <ixx>0.5</ixx>
+          <ixx>3</ixx>
+          <ixy>0.0</ixy>
+          <iyy>3</iyy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+          <izz>6</izz>
+          <!-- <ixx>0.5</ixx>
           <ixy>0.0</ixy>
           <iyy>0.5</iyy>
           <ixz>0.0</ixz>
           <iyz>0.0</iyz>
-          <izz>1.0</izz>
+          <izz>1.0</izz> -->
         </inertia>
       </inertial>
       <collision name="collision">
         <geometry>
           <cylinder>
-            <radius>0.3175</radius>
-            <length>0.2794</length>
+            <radius>0.1905</radius>
+            <length>0.16764</length>
+            <!-- <radius>0.3175</radius>
+            <length>0.2794</length> -->
           </cylinder>
         </geometry>
         <max_contacts>1</max_contacts>
@@ -631,7 +630,8 @@
         <geometry>
           <mesh>
             <uri>model://rover/meshes/polaris.dae</uri>
-            <scale>1.003700111 0.886200464 0.886200464</scale>
+            <!-- <scale>1.003700111 0.886200464 0.886200464</scale> -->
+            <scale>0.6022 0.5317 0.5317</scale>
             <submesh>
               <name>Wheels_Rear_Left</name>
               <center>true</center>
@@ -648,24 +648,37 @@
       </visual>
     </link>
     <link name="rear_right_wheel">
-      <pose>-0.99377 -0.71562 0.34697 1.52 0.0 0.0</pose>
+      <pose>-0.596262 -0.429372 0.1214395 1.52 0.0 0.0</pose>
+      <!-- <pose>-0.99377 -0.71562 0.34697 1.52 0.0 0.0</pose> -->
       <inertial>
         <mass>12</mass>
-        <!-- estimated from http://www.rzrforums.net/wheels-tires/1729-tire-wheel-weights-most-sizes.html -->
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <inertia>
-          <ixx>0.5</ixx>
+          <ixx>3</ixx>
+          <ixy>0.0</ixy>
+          <iyy>3</iyy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+          <izz>6</izz>
+          <!-- <ixx>0.5</ixx>
           <ixy>0.0</ixy>
           <iyy>0.5</iyy>
           <ixz>0.0</ixz>
           <iyz>0.0</iyz>
-          <izz>1.0</izz>
+          <izz>1.0</izz> -->
         </inertia>
       </inertial>
       <collision name="collision">
         <geometry>
           <cylinder>
-            <radius>0.3175</radius>
-            <length>0.2794</length>
+            <radius>0.1905</radius>
+            <length>0.16764</length>
+            <!-- <radius>0.3175</radius>
+            <length>0.2794</length> -->
           </cylinder>
         </geometry>
         <max_contacts>1</max_contacts>
@@ -692,7 +705,8 @@
         <geometry>
           <mesh>
             <uri>model://rover/meshes/polaris.dae</uri>
-            <scale>1.003700111 0.886200464 0.886200464</scale>
+            <scale>0.6022 0.5317 0.5317</scale>
+            <!-- <scale>1.003700111 0.886200464 0.886200464</scale> -->
             <submesh>
               <name>Wheels_Rear_Right</name>
               <center>true</center>
@@ -709,45 +723,73 @@
       </visual>
     </link>
     <link name="front_right_wheel_steering_block">
-      <pose>1.20223 -0.5 0.35515 1.570796 0.0 0.0</pose>
+      <pose>0.721338 -0.3 0.1243025 1.570796 0.0 0.0</pose>
+      <!-- <pose>1.20223 -0.5 0.35515 1.570796 0.0 0.0</pose> -->
       <inertial>
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <mass>1</mass>
         <inertia>
-          <ixx>0.01</ixx>
+          <ixx>0.006</ixx>
+          <ixy>0.0</ixy>
+          <iyy>0.006</iyy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+          <izz>0.006</izz>
+          <!-- <ixx>0.01</ixx>
           <ixy>0.0</ixy>
           <iyy>0.01</iyy>
           <ixz>0.0</ixz>
           <iyz>0.0</iyz>
-          <izz>0.01</izz>
+          <izz>0.01</izz> -->
         </inertia>
       </inertial>
       <collision name="collision">
         <geometry>
           <cylinder>
-            <radius>0.05</radius>
-            <length>0.01</length>
+            <radius>0.03</radius>
+            <length>0.006</length>
+            <!-- <radius>0.05</radius>
+            <length>0.01</length> -->
           </cylinder>
         </geometry>
       </collision>
     </link>
     <link name="front_left_wheel_steering_block">
-      <pose>1.20223 0.5 0.35515 1.570796 0.0 0.0</pose>
+      <pose>0.721338 0.3 0.1243025 1.570796 0.0 0.0</pose>
+      <!-- <pose>1.20223 0.5 0.35515 1.570796 0.0 0.0</pose> -->
       <inertial>
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia -->
+        <!-- Solid cylinder of radius r, height h and mass m -->
+        <!-- ixx = m(3(r^2) + h^2)/12 -->
+        <!-- iyy = m(3(r^2) + h^2)/12 -->
+        <!-- izz = m(r^2)/2 -->
         <mass>1</mass>
         <inertia>
-          <ixx>0.01</ixx>
+          <ixx>0.006</ixx>
+          <ixy>0.0</ixy>
+          <iyy>0.006</iyy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+          <izz>0.006</izz>
+          <!-- <ixx>0.01</ixx>
           <ixy>0.0</ixy>
           <iyy>0.01</iyy>
           <ixz>0.0</ixz>
           <iyz>0.0</iyz>
-          <izz>0.01</izz>
+          <izz>0.01</izz> -->
         </inertia>
       </inertial>
       <collision name="collision">
         <geometry>
           <cylinder>
-            <radius>0.05</radius>
-            <length>0.01</length>
+            <radius>0.03</radius>
+            <length>0.006</length>
+            <!-- <radius>0.05</radius>
+            <length>0.01</length> -->
           </cylinder>
         </geometry>
       </collision>
@@ -780,6 +822,7 @@
       <child>front_left_wheel</child>
       <parent>front_left_wheel_steering_block</parent>
       <axis>
+        <!-- <xyz>0 0.6 0.0175</xyz> -->
         <xyz>0 1 0.05</xyz>
         <use_parent_model_frame>true</use_parent_model_frame>
       </axis>
@@ -788,6 +831,7 @@
       <child>front_right_wheel_steering_block</child>
       <parent>base_link</parent>
       <axis>
+        <!-- <xyz>0 0 0.35</xyz> -->
         <xyz>0 0 1</xyz>
         <limit>
           <lower>-0.7727</lower>
@@ -812,24 +856,28 @@
       <child>front_right_wheel</child>
       <parent>front_right_wheel_steering_block</parent>
       <axis>
+        <!-- <xyz>0 0.6 -0.0175</xyz> -->
         <xyz>0 1 -0.05</xyz>
         <use_parent_model_frame>true</use_parent_model_frame>
       </axis>
     </joint>
     <joint type="revolute" name="rear_left_wheel_joint">
+      <pose>0.0 0.0 -0.035 0 0 0</pose>
       <child>rear_left_wheel</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>0 1 0.05</xyz>
+        <xyz>0 0.6 0.0175</xyz>
+        <!-- <xyz>0 1 0.05</xyz> -->
         <use_parent_model_frame>true</use_parent_model_frame>
       </axis>
     </joint>
     <joint type="revolute" name="rear_right_wheel_joint">
-      <pose>0.0 0.0 -0.1 0 0 0</pose>
+      <pose>0.0 0.0 -0.035 0 0 0</pose>
       <child>rear_right_wheel</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>0 1 -0.05</xyz>
+        <xyz>0 0.6 -0.0175</xyz>
+        <!-- <xyz>0 1 -0.05</xyz> -->
         <use_parent_model_frame>true</use_parent_model_frame>
       </axis>
     </joint>
@@ -851,18 +899,68 @@
         </ode>
       </physics>
     </joint> -->
-    <include>
-      <uri>model://gps</uri>
-      <pose>0 0 0 0 0 0</pose>
-      <name>gps</name>
+
+    <!-- <include>
+      <uri>model://fpv_cam</uri>
+      <pose>1.5 0 0.5 0 0 0</pose>
     </include>
-    <joint name='gps_joint' type='fixed'>
-      <child>gps::link</child>
-      <parent>base_link</parent>
+    <joint name="fpv_cam_joint" type="fixed">
+      <child>fpv_cam::link</child>
+      <parent>rover::base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <upper>0</upper>
+          <lower>0</lower>
+        </limit>
+      </axis>
+    </joint> -->
+
+    <!--depth cam-->
+    <!-- <include>
+      <uri>model://depth_camera</uri>
+      <pose>0.4 0.1 0.7 0 0 0</pose>
+    </include>
+    <joint name="depth_camera_joint" type="revolute">
+      <child>depth_camera::link</child>
+      <parent>rover::base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <upper>0</upper>
+          <lower>0</lower>
+        </limit>
+      </axis>
+    </joint> -->
+    <!--depth cam-->
+
+    <!--realsense cam-->
+    <include>
+      <uri>model://realsense_camera</uri>
+      <pose>0.4 0 1.5 0 0 0</pose>
+    </include>
+    <joint name="realsense_camera_joint" type="revolute">
+      <child>realsense_camera::link</child>
+      <parent>rover::base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <upper>0</upper>
+          <lower>0</lower>
+        </limit>
+      </axis>
     </joint>
+    <!--realsense cam-->
+    <!--ouster lidar-->
+    <include>
+      <uri>model://ouster</uri>
+      <pose>0 0 0.8 0 0 0</pose>
+    </include>
+    <!--ouster lidar-->
+
     <plugin name='barometer_plugin' filename='libgazebo_barometer_plugin.so'>
       <robotNamespace/>
-      <pubRate>30</pubRate>
+      <pubRate>10</pubRate>
       <baroTopic>/baro</baroTopic>
     </plugin>
     <plugin name='gazebo_imu_plugin' filename='libgazebo_imu_plugin.so'>
@@ -878,12 +976,13 @@
       <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime>
       <accelerometerTurnOnBiasSigma>0.196</accelerometerTurnOnBiasSigma>
     </plugin>
-    <plugin name='groundtruth_plugin' filename='libgazebo_groundtruth_plugin.so'>
-      <robotNamespace/>
+    <plugin name="gps_plugin" filename="libgazebo_gps_plugin.so">
+	<robotNamespace></robotNamespace>
+	<gpsNoise>true</gpsNoise>
     </plugin>
     <plugin name='magnetometer_plugin' filename='libgazebo_magnetometer_plugin.so'>
       <robotNamespace/>
-      <pubRate>30</pubRate>
+      <pubRate>20</pubRate>
       <noiseDensity>0.0004</noiseDensity>
       <randomWalk>6.4e-06</randomWalk>
       <biasCorrelationTime>600</biasCorrelationTime>
@@ -892,6 +991,7 @@
     <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
       <robotNamespace></robotNamespace>
       <imuSubTopic>/imu</imuSubTopic>
+      <gpsSubTopic>/gps</gpsSubTopic>
       <magSubTopic>/mag</magSubTopic>
       <baroSubTopic>/baro</baroSubTopic>
       <mavlink_addr>INADDR_ANY</mavlink_addr>

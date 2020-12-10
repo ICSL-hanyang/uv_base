@@ -17,6 +17,8 @@
     <!-- <arg name="world" default="$(find uv_base)/config/posix-configs/worlds/rover_follow.world"/> -->
     <arg name="world" default="$(find uv_base)/config/posix-configs/worlds/evgp.world"/>
     <arg name="sdf" default="$(find uv_base)/config/posix-configs/models/$(arg vehicle)/$(arg vehicle).sdf"/>
+    <env name="PX4_SIM_MODEL" value="$(arg vehicle)" />
+    <env name="PX4_ESTIMATOR" value="$(arg est)" />
 
     <!-- gazebo configs -->
     <arg name="gui" default="true"/>
@@ -28,26 +30,28 @@
     <!-- MAVROS configs -->
     <arg name="fcu_url" default="udp://:14540@$(arg user_ip):14557"/>
     <arg name="respawn_mavros" default="false"/>
+
     <!-- PX4 configs -->
     <arg name="interactive" default="true"/>
     <!-- PX4 SITL and Gazebo -->
-    <include file="$(find uv_base)/launch/sim_launch/rover_posix_sitl.launch">
-        <arg name="x" value="$(arg x)"/>
-        <arg name="y" value="$(arg y)"/>
-        <arg name="z" value="$(arg z)"/>
-        <arg name="R" value="$(arg R)"/>
-        <arg name="P" value="$(arg P)"/>
-        <arg name="Y" value="$(arg Y)"/>
-        <arg name="world" value="$(arg world)"/>
-        <arg name="vehicle" value="$(arg vehicle)"/>
-        <arg name="sdf" value="$(arg sdf)"/>
+    <arg unless="$(arg interactive)" name="px4_command_arg1" value="-d"/>
+    <arg     if="$(arg interactive)" name="px4_command_arg1" value=""/>
+    <node name="sitl" pkg="px4" type="px4" output="screen"
+        args="$(find px4)/ROMFS/px4fmu_common -s etc/init.d-posix/rcS $(arg px4_command_arg1)" required="true"/>
+    
+    <!-- Gazebo sim -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="gui" value="$(arg gui)"/>
-        <arg name="interactive" value="$(arg interactive)"/>
+        <arg name="world_name" value="$(arg world)"/>
         <arg name="debug" value="$(arg debug)"/>
         <arg name="verbose" value="$(arg verbose)"/>
         <arg name="paused" value="$(arg paused)"/>
         <arg name="respawn_gazebo" value="$(arg respawn_gazebo)"/>
     </include>
+    <!-- gazebo model -->
+    <node name="$(anon vehicle_spawn)" pkg="gazebo_ros" type="spawn_model" output="screen" args="-sdf -file $(arg sdf) -model $(arg vehicle) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
+    
+    
     <!-- MAVROS -->
     <include file="$(find uv_base)/launch/mavros_launch/px4.launch">
         <!-- GCS link is provided by SITL -->

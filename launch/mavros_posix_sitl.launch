@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-    <arg name="rviz" default="false"/>
+    <arg name="rviz" default="true"/>
     <arg name="joy" default="true"/>
 
     <!-- MAVROS posix SITL environment launch script -->
@@ -16,10 +16,11 @@
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="rover"/>
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>
-    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/sonoma_raceway.world"/> -->
+    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/> -->
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/sonoma_raceway.world"/>
     <!-- <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/model.sdf"/> -->
     <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
+    <arg name="rviz_mesh" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/meshes/Hybrid.obj"/>
     <!-- <arg name="sdf" default="$(find uv_base)/config/posix-configs/models/$(arg vehicle)/$(arg vehicle).sdf"/> -->
 
     <!-- gazebo configs -->
@@ -65,9 +66,9 @@
     <node if="$(arg joy)" name="joystick_control_node" pkg="uv_base" type="joystick_control" output="screen" respawn="true">
     </node>
 
-    <param name="robot_description" textfile="$(find uv_base)/config/posix-configs/models/rover/rover.urdf" />
+    <param name="robot_description" textfile="$(arg rviz_mesh)" />
     <!-- rviz -->
-    <node if="$(arg rviz)" type="rviz" name="rviz" pkg="rviz" args="-d $(find uv_base)/config/uv-configs/rviz/uv.rviz">
+    <node if="$(arg rviz)" type="rviz" name="rviz" pkg="rviz" args="-d $(find uv_base)/config/uv-configs/rviz/e2e.rviz">
     </node>
 
 

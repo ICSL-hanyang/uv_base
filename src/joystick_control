@@ -43,8 +43,8 @@ SHIFT_FORWARD = 4     # forward 1
 SHIFT_REVERSE = 5     # reverse 1
 
 # Max speed and steering factor
-MAX_THROTTLE_FACTOR = 10
-MAX_STEERING_FACTOR = 5
+MAX_THROTTLE_FACTOR = 30
+MAX_STEERING_FACTOR = 10
 # Default speed and steering factor
 INIT_THROTTLE_FACTOR = 3
 INIT_STERRING_FACTOR = 1
@@ -135,7 +135,7 @@ class Translator:
         if self.msg_mav_state.armed == True:
             if self.gear.shift_gears == Control.FORWARD:
                 command4mavros.linear.x = command.throttle*(1+self.throttle_factor)
-                command4mavros.angular.z = command.steer*(1+self.steering_factor*0.1)
+                command4mavros.angular.z = command.steer*(1+self.steering_factor*0.5)
                 self.pub4mavros.publish(command4mavros)
             elif self.gear.shift_gears == Control.REVERSE:
                 command4mavros.linear.x = -command.throttle*(1+self.throttle_factor*0.1)

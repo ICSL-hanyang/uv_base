@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="uv_base" type="joystick_control_node" name="joystick_control" output="screen">
+    </node>
+</launch>

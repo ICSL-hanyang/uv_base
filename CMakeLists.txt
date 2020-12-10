@@ -55,6 +55,7 @@ include_directories(
 
 catkin_install_python(PROGRAMS
   src/joystick_control
+  src/data_collection
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 install(DIRECTORY launch
@@ -64,8 +65,6 @@ install(DIRECTORY launch
 
 add_executable(uv_base_node src/main.cpp)
 target_link_libraries(uv_base_node ${catkin_LIBRARIES})
-#add_executable(joystick_control_node src/joystick.py)
-#target_link_libraries(joystick_control_node ${catkin_LIBRARIES})
 add_executable(sensor_node src/sensor.cpp)
 target_link_libraries(sensor_node ${catkin_LIBRARIES})
 

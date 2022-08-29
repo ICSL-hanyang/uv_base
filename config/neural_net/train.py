@@ -15,7 +15,7 @@ def main():
             return
         
         drive_train = DriveTrain(sys.argv[1])
-        drive_train.train(show_summary=False)    
+        drive_train.train(show_summary=True)    
 
     except KeyboardInterrupt:
         print ('\nShutdown requested. Exiting...')

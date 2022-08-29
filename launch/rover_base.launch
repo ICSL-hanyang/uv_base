@@ -53,7 +53,7 @@
     
     
     <!-- MAVROS -->
-    <include file="$(find uv_base)/launch/mavros_launch/px4.launch">
+    <include file="$(find uv_base)/launch/mavros/mavros_px4.launch">
         <!-- GCS link is provided by SITL -->
         <arg name="gcs_url" value=""/>
         <arg name="fcu_url" value="$(arg fcu_url)"/>

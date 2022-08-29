@@ -32,7 +32,7 @@ class DriveTrain:
         else:
             model_name = data_path
         csv_path = data_path + model_name + const.DATA_EXT  # use it for csv file name 
-        
+        print(csv_path)
         self.csv_path = csv_path
         self.train_generator = None
         self.valid_generator = None

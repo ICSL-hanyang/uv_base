@@ -57,6 +57,7 @@ class Translator:
         self.sub = rospy.Subscriber("joy", Joy, self.callback)
         self.sub = rospy.Subscriber("mavros/state", State, self.mavstateCB )
         self.pub = rospy.Publisher('rover', Control, queue_size=20)
+        # self.pub4mavros = rospy.Publisher('rover_vel', Twist, queue_size=20)
         self.pub4mavros = rospy.Publisher('mavros/setpoint_velocity/cmd_vel_unstamped', Twist, queue_size=20)
 
         self.last_published_time = rospy.get_rostime()
